@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import axiosInstance from '../axiosInstance';
+import moment from 'moment';
 
 const PostForm = () => {
   const [posts, setPosts] = useState([]);
@@ -163,7 +164,10 @@ const PostForm = () => {
             <img src={post.image} alt={post.title} className="w-full h-48 object-cover rounded mb-4"/>
             <h2 className="text-xl font-semibold">{post.title}</h2>
             <p className="mt-2 text-gray-700">{post.description}</p>
-            <div className="mt-4 flex justify-end space-x-4">
+            <p className="mt-2 text-gray-500 text-sm">
+              {moment(post.createdAt).fromNow()}
+            </p>
+            <div className="mt-2 flex justify-end space-x-4">
               <Link
                 to={`/edit-post/${post._id}`}
                 className="text-blue-500 hover:underline"
